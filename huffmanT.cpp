@@ -26,6 +26,11 @@ struct compare
 	}
 };
 
+struct value_code
+{
+	int value;
+	string code;
+};
 
 map<int, string> valueTOcode;
 void getCodes(struct Node *root, string str)

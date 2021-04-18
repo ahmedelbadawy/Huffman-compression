@@ -16,9 +16,7 @@ map<string,int> codeTOvalue;
 void readCompressed(string &str)
 {
     ifstream compressedFile;
-    cout<<"enter the name of the .enc file you wish to decompress"<<endl;
-    string decompressFile=""; cin>>decompressFile; decompressFile+=".enc";
-    compressedFile.open(decompressFile);
+    compressedFile.open("compressMod.enc");
     char ch;
     while(compressedFile>> noskipws >>ch)
     {
@@ -38,9 +36,7 @@ void readCompressed(string &str)
 
 
 void readCodes(vector<int> &value,vector<string> &codearr, int &width, int &hight){
-    cout<<"please enter the name of the associated .freq file"<<endl;
-    string decompressFreq=""; cin>>decompressFreq; decompressFreq+=".freq";
-    ifstream codesFile(decompressFreq);
+    ifstream codesFile("codeFile.freq");
     string value_casting="";int i=0; string codeCasting="";
     codesFile>>width>>hight;
     while(codesFile>>value_casting>>codeCasting){
@@ -49,16 +45,14 @@ void readCodes(vector<int> &value,vector<string> &codearr, int &width, int &high
     value.push_back(stoi(value_casting));
     
     }
-
+for(int i=0;i<codearr.size();i++){
+  //  cout<<codearr[i]<<" "<<value[i]<<endl;
+}
 }
 
 void decode_write( map<string,int> codeTOvalue, string binary_string,int width,int hight)
 {
-    string name ="" ;
-    cout<<"Please enter the name of decomparssed image without extention"<<endl ;
-    cin>>name ;
-    name += ".pgm" ;
-    ofstream pgm_write(name);
+    ofstream pgm_write("P5.pgm");
     pgm_write<<"P5"<<endl;
     pgm_write<<width<<" "<<hight<<endl;
     pgm_write<<"255"<<endl;
